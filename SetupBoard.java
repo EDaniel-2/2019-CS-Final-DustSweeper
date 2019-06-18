@@ -15,6 +15,7 @@ public class SetupBoard extends Application{
    int row;
    int col;
    boolean[][] cells;
+   boolean firstClick = true;
    //Image dust = new Image(getClass().getResourceAsStream("dust-cloud30.jpg"));
    Button[][] board;
    int[][] minesAround;
@@ -40,21 +41,13 @@ public class SetupBoard extends Application{
             createCell(x,y);    
          }
       }
-     // scene.setOnMouseClicked(mouseHandler);   
+      //scene.setOnMouseClicked(mouseHandler);   
       this.scene = new Scene(panel, col*50, row*50);    
       primaryStage.setTitle("DustSweeper");
       primaryStage.setScene(scene);
       primaryStage.show();
    }
-   /* EventHandler<javafx.scene.input.MouseEvent> mouseHandler = new EventHandler<javafx.scene.input.MouseEvent>() {
- 
-        @Override
-        public void handle(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println("Hello World!");
-         }
-      };*/
-
-   
+      
    public static void main(String[] args){
       launch(args);
    }
@@ -72,7 +65,11 @@ public class SetupBoard extends Application{
       //board[x][y].setGraphic(new ImageView(dust));
       board[x][y].setPrefSize(50, 50);
       this.panel.add(board[x][y],x,y);
-      Cell cell = new Cell(board[x][y], x, y, cells[x][y]); 
+      Cell cell = new Cell(board[x][y], x, y); 
+   }
+   
+   public boolean accessCell(int x, int y){
+      return cells[x][y];
    }
    
    public void setSingleMine(){
