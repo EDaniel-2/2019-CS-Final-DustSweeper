@@ -50,12 +50,12 @@ public class Cell extends StackPane{//cell saves the properties of each cell suc
    private void onClick(MouseEvent e) {//this handles each mouse click
       if (e.getButton() == MouseButton.PRIMARY) {//left click
          if(isMine){
-            SetupBoard.showEndgame();
+            Board.showEndgame();
          }
          else{ //not a mine
             showNumber();
             if(minesAround == 0){
-               SetupBoard.checkCellsAround(row, col);
+               Board.checkCellsAround(row, col);
             }
          }
       }
@@ -67,21 +67,21 @@ public class Cell extends StackPane{//cell saves the properties of each cell suc
    
    public void toggleFlag(){//this method toggles if the flag is on or off and calls other methods to control properties of the flags
       if(isFlagged){//if it is flagged and it is clicked, the flag is taken away, total number of flags decremented
-         SetupBoard.flags--;
+         Board.flags--;
          tile.setGraphic(dustImage);
          isFlagged = false;
          if(isMine){
-            SetupBoard.flagMine(-1);
+            Board.flagMine(-1);
          } 
 
       }
       else{
-         if(SetupBoard.flags < SetupBoard.mines){//if user is placing a mine, this doesnt allow more flags than mines
-            SetupBoard.flags++;
+         if(Board.flags < Board.mines){//if user is placing a mine, this doesnt allow more flags than mines
+            Board.flags++;
             tile.setGraphic(freedom);
             isFlagged = true;
             if(isMine){
-               SetupBoard.flagMine(1);
+               Board.flagMine(1);
             }
          } 
       }
